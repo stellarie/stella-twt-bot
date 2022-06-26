@@ -98,7 +98,7 @@ def generate_prelim_analysis(user):
         all_tweets.extend(tweets)
         print('{} tweets downloaded'.format(len(all_tweets)))
     # since we have populated the all_tweets array, 
-    # then we can output the tweets into a csv
+    # then we can now start preliminary analysis
     print('Generating preliminary analysis for %s --' % user)
     for tweet in all_tweets:
         outtweets = [[tweet.id_str,
@@ -109,9 +109,9 @@ def generate_prelim_analysis(user):
                     for idx, tweet in enumerate(all_tweets)]
         df = DataFrame(outtweets, columns=["id","created_at","favorite_count","retweet_count","text"])
         ylabels = ["favorite_count", "retweet_count"]
+        # finally, generate the plot
         fig = plt.figure(figsize=(13,3))
-        fig.subplots_adjust(hspace=4,wspace=0.01)
-
+        fig.subplots_adjust(hspace=2,wspace=0.01)
         n_row = len(ylabels)
         n_col = 1
         for count, ylabel in enumerate(ylabels):
